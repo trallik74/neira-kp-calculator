@@ -3,7 +3,7 @@ import Logo from "../Logo/Logo";
 
 function Header() {
   return (
-    <AppBar position="static" color="inherit">
+    <AppBar position="static" color="transparent">
       <Toolbar sx={{ justifyContent: "center" }}>
         <Logo />
       </Toolbar>
