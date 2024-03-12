@@ -1,18 +1,4 @@
-import { useState } from "react";
-import SelectListItem from "../SelectListItem/SelectListItem";
-
-function SelectList() {
-  const [values, setValues] = useState({});
-  const [errors, setErrors] = useState({ isError: false, message: "" });
-
-  const handleChange = (event) => {
-    if (event.target.name === "other-city" && errors.isError === true) {
-      setErrors({ ...errors, isError: false, message: "" });
-    }
-    setValues({ ...values, [event.target.name]: event.target.value });
-  };
-
-  const arr = [
+export const selectListConfig = [
     {
       name: "citys",
       label: "Город",
@@ -42,17 +28,41 @@ function SelectList() {
       ],
     },
   ];
-  return arr.map((item, index) => (
-    <SelectListItem
-      name={item.name}
-      label={item.label}
-      selectPoints={item.selectPoints}
-      handleChange={handleChange}
-      values={values}
-      errors={errors}
-      key={index}
-    />
-  ));
-}
 
-export default SelectList;
+  export const servicesList = [
+    {
+      text: "Разработка веб-сайта мероприятия",
+      price: "10000",
+      type: "checkbox",
+    },
+    {
+      text: "Фото-отчет",
+      price: "20000",
+      type: "checkbox",
+    },
+    {
+      text: "Видео-отчет",
+      price: "30000",
+      type: "checkbox",
+    },
+    {
+      text: `"Motion-design" видео`,
+      price: "40000",
+      type: "checkbox",
+    },
+    {
+      text: "Баннер",
+      price: "50000",
+      type: "counter",
+    },
+    {
+      text: "Стенд",
+      price: "60000",
+      type: "counter",
+    },
+    {
+      text: "Презентация",
+      price: "70000",
+      type: "counter",
+    },
+  ];

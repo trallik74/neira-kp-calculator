@@ -37,20 +37,19 @@ function SelectListItem({
         ))}
       </Select>
       {values[`select-${name}`] === "other" && (
-        <FormControl error={errors.isError} sx={{ mt: 1 }}>
+        <FormControl error={!!errors["other-city"]} sx={{ mt: "8px" }}>
           <Input
-            id="other-sity"
+            id="other-city"
             name="other-city"
             placeholder="Введите название города"
             autoFocus
             value={values["other-city"] || ""}
             onChange={handleChange}
-            inputProps={{maxLength: 30, type: 'text'}}
+            required
+            inputProps={{ maxLength: 30, type: "text" }}
             sx={{ p: "25px 12px 8px" }}
           />
-          <FormHelperText id="component-error-text">
-            {errors.message}
-          </FormHelperText>
+          <FormHelperText>{errors["other-city"]}</FormHelperText>
         </FormControl>
       )}
     </FormControl>

@@ -1,5 +1,5 @@
 import { Box, Container } from "@mui/material";
-import SelectList from "../SelectList/SelectList";
+import SelectArea from "../SelectArea/SelectArea";
 
 function Main() {
   return (
@@ -8,14 +8,9 @@ function Main() {
         maxWidth="xl"
         sx={{
           paddingTop: 6,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 2,
         }}
       >
-        <SelectList />
+        <SelectArea />
       </Container>
     </Box>
   );
