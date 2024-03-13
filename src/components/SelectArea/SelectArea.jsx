@@ -3,7 +3,7 @@ import { selectListConfig, servicesList } from "../../utils/constant";
 import AdditionalServices from "../AdditionalServices/AdditionalServices";
 import { Typography } from "@mui/material";
 
-function SelectArea({ values, errors, handleChange }) {
+function SelectArea() {
   return (
     <>
       <Typography variant="h5" component="p">
@@ -14,9 +14,6 @@ function SelectArea({ values, errors, handleChange }) {
           name={item.name}
           label={item.label}
           selectOptions={item.selectOptions}
-          handleChange={handleChange}
-          values={values}
-          errors={errors}
           key={index}
         />
       ))}
