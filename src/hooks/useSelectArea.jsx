@@ -13,12 +13,11 @@ export function useSelectArea() {
           ...errors,
           ["other-city"]: "Заполните это поле.",
         });
-        input.focus()
-        return
+        input.focus();
+        return;
       }
     }
     console.log(values);
-
   };
 
   const handleChange = (evt) => {
@@ -26,14 +25,14 @@ export function useSelectArea() {
     const value = input.value;
     const name = input.name;
 
-    if (input.name === "select-citys" && input.value === "other") {
+    if (input.name === "select-city" && input.value === "other") {
       setIsOtherCity(true);
       setValues({ ...values, [name]: value });
       setErrors({
         ...errors,
         ["other-city"]: "",
       });
-    } else if (input.name === "select-citys" && input.value !== "other") {
+    } else if (input.name === "select-city" && input.value !== "other") {
       setValues({ ...values, [name]: value, ["other-city"]: "" });
 
       setIsOtherCity(false);

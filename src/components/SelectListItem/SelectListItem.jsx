@@ -10,7 +10,7 @@ import {
 function SelectListItem({
   name,
   label,
-  selectPoints,
+  selectOptions,
   values,
   handleChange,
   errors,
@@ -30,7 +30,7 @@ function SelectListItem({
           backgroundColor: "transparent",
         }}
       >
-        {selectPoints.map((item, index) => (
+        {selectOptions.map((item, index) => (
           <MenuItem key={index} value={item.value}>
             {item.text}
           </MenuItem>

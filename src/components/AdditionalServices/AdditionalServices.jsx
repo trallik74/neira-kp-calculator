@@ -85,11 +85,22 @@ function AdditionalServices({ data }) {
                 }}
               >
                 {item.price}
-                <Typography variant="caption" component="span" sx={{mt: 1}}>
+                <Typography variant="caption" component="span" sx={{ mt: 1 }}>
                   ₽
                 </Typography>
               </Typography>
-              {item.type === "checkbox" ? (
+              {item.isMultyQuantity ? (
+                <ServcesCounter
+                  id={index}
+                  name={item.text}
+                  price={item.price}
+                  quantity={
+                    order.find((item) => item.id === index)?.quantity || 0
+                  }
+                  handleCounterIncrease={handleCounterIncrease}
+                  handleCounterDecrease={handleCounterDecrease}
+                />
+              ) : (
                 <div className={styles.wrapper}>
                   <Checkbox
                     size="small"
@@ -104,17 +115,6 @@ function AdditionalServices({ data }) {
                     }}
                   />
                 </div>
-              ) : (
-                <ServcesCounter
-                  id={index}
-                  name={item.text}
-                  price={item.price}
-                  quantity={
-                    order.find((item) => item.id === index)?.quantity || 0
-                  }
-                  handleCounterIncrease={handleCounterIncrease}
-                  handleCounterDecrease={handleCounterDecrease}
-                />
               )}
             </div>
           ))}
