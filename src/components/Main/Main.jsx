@@ -2,10 +2,10 @@ import { Box, Container } from "@mui/material";
 import styles from "./Main.module.css";
 import SelectArea from "../SelectArea/SelectArea";
 import { useDispatch, useSelector } from "react-redux";
-import { selectOptionAction } from "../../store/slices";
+import { selectValuesAction } from "../../store/slices";
 
 function Main() {
-  const values = useSelector((state) => state.selectOption);
+  const values = useSelector((state) => state.selectValues);
   const dispatch = useDispatch();
 
   function handleSubmit(evt) {
@@ -15,7 +15,7 @@ function Main() {
       console.log(input.value === "");
       if (input.value === "") {
         dispatch(
-          selectOptionAction.setError({
+          selectValuesAction.setError({
             name: "other-city",
             error: "Заполните это поле.",
           })
@@ -24,6 +24,7 @@ function Main() {
         return;
       }
     }
+    console.log('success');
     console.log(values);
   }
 

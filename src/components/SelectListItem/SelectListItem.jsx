@@ -7,10 +7,10 @@ import {
   Select,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { selectOptionAction } from "../../store/slices";
+import { selectValuesAction } from "../../store/slices";
 
 function SelectListItem({ name, label, selectOptions }) {
-  const values = useSelector((state) => state.selectOption);
+  const values = useSelector((state) => state.selectValues);
   const dispatch = useDispatch();
 
   const handleChange = (evt) => {
@@ -19,14 +19,14 @@ function SelectListItem({ name, label, selectOptions }) {
     const name = input.name;
 
     if (input.name === "select-city" && input.value !== "Другой город") {
-      dispatch(selectOptionAction.setValue({ name, value }));
-      dispatch(selectOptionAction.removeValue({ name: "other-city" }));
-      dispatch(selectOptionAction.removeError({ name: "other-city" }));
+      dispatch(selectValuesAction.setValue({ name, value }));
+      dispatch(selectValuesAction.removeValue({ name: "other-city" }));
+      dispatch(selectValuesAction.removeError({ name: "other-city" }));
     } else if (input.name === "other-city") {
-      dispatch(selectOptionAction.setValue({ name, value }));
-      dispatch(selectOptionAction.removeError({ name }));
+      dispatch(selectValuesAction.setValue({ name, value }));
+      dispatch(selectValuesAction.removeError({ name }));
     } else {
-      dispatch(selectOptionAction.setValue({ name, value }));
+      dispatch(selectValuesAction.setValue({ name, value }));
     }
   };
 

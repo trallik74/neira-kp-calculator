@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {};
 
-export const selectOptionSlice = createSlice({
-  name: "selectOption",
+export const selectValuesSlice = createSlice({
+  name: "selectValues",
   initialState,
   reducers: {
     setValue: (state, action) => {
@@ -21,5 +21,5 @@ export const selectOptionSlice = createSlice({
   },
 });
 
-export const { reducer: selectOptionReducer, actions: selectOptionAction } =
-  selectOptionSlice;
+export const { reducer: selectValuesReducer, actions: selectValuesAction } =
+selectValuesSlice;
