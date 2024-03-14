@@ -1,8 +1,17 @@
-# React + Vite
+# Калькулятор коммерческого предложения Neira
+Проект в процессе разработки.
+## Технологии
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Что сделал
+- сверстал компоненты выбора услуг на React;
+- описал логику выбора услуг;
 
-Currently, two official plugins are available:
+## Планы по доработке
+- переделать секцию дополнительных услуг на Redux;
+- отрисовать набор выбранных услуг;
+- реализовать отправку услуг на почту через Emailjs;
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
