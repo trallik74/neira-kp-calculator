@@ -32,37 +32,60 @@ export const selectListConfig = [
 export const servicesList = [
   {
     text: "Разработка веб-сайта мероприятия",
-    price: "10000",
+    price: "50000",
     isMultyQuantity: false,
   },
   {
     text: "Фото-отчет",
-    price: "20000",
-    type: "checkbox",
+    price: "10000",
+    isMultyQuantity: false,
   },
   {
     text: "Видео-отчет",
-    price: "30000",
+    price: "15000",
     isMultyQuantity: false,
   },
   {
     text: `"Motion-design" видео`,
-    price: "40000",
+    price: "20000",
     isMultyQuantity: false,
   },
   {
     text: "Баннер",
-    price: "50000",
+    price: "5000",
     isMultyQuantity: true,
   },
   {
     text: "Стенд",
-    price: "60000",
+    price: "50000",
     isMultyQuantity: true,
   },
   {
     text: "Презентация",
-    price: "70000",
+    price: "3000",
     isMultyQuantity: true,
   },
 ];
+
+const hotelCost = {
+  Самара: {
+    "Премиальный сегмент": 400000,
+    "Средний сегмент": 200000,
+    "Бюджетный сегмент": 100000,
+  },
+  "Другой город": {
+    "Премиальный сегмент": 400000,
+    "Средний сегмент": 200000,
+    "Бюджетный сегмент": 100000,
+  },
+  "Санкт-Петербург": {
+    "Премиальный сегмент": 800000,
+    "Средний сегмент": 400000,
+    "Бюджетный сегмент": 200000,
+  },
+  Москва: {
+    "Премиальный сегмент": 800000,
+    "Средний сегмент": 400000,
+    "Бюджетный сегмент": 200000,
+  },
+};
