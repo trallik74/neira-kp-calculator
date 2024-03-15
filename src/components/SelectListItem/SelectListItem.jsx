@@ -20,11 +20,18 @@ function SelectListItem({ name, label, selectOptions }) {
 
     if (input.name === "select-city" && input.value !== "Другой город") {
       dispatch(selectValuesAction.setValue({ name, value }));
-      dispatch(selectValuesAction.removeValue({ name: "other-city" }));
-      dispatch(selectValuesAction.removeError({ name: "other-city" }));
+      if (
+        typeof values["other-city"] !== "undefined" ||
+        typeof values["other-city-error"] !== "undefined"
+      ) {
+        dispatch(selectValuesAction.removeValue({ name: "other-city" }));
+        dispatch(selectValuesAction.removeError({ name: "other-city" }));
+      }
     } else if (input.name === "other-city") {
       dispatch(selectValuesAction.setValue({ name, value }));
-      dispatch(selectValuesAction.removeError({ name }));
+      if (values["other-city-error"]) {
+        dispatch(selectValuesAction.removeError({ name }));
+      }
     } else {
       dispatch(selectValuesAction.setValue({ name, value }));
     }

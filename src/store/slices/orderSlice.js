@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { counterSettings } from "../../utils/constant";
 
 const initialState = {
   order: [],
@@ -20,7 +21,7 @@ export const orderSlice = createSlice({
           id: 1,
           name: "Аренда помещения",
           price: action.payload.price,
-          quantity: 1,
+          quantity: counterSettings.MinQuantity,
         });
       }
     },
