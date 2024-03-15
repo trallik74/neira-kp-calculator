@@ -67,7 +67,7 @@ export const servicesList = [
   },
 ];
 
-const hotelCost = {
+export const hotelCost = {
   Самара: {
     "Премиальный сегмент": 400000,
     "Средний сегмент": 200000,

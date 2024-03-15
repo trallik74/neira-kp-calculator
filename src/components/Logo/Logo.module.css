@@ -1,8 +1,14 @@
 .logo {
-  text-decoration: none;
-  color: inherit;
+  width: 230px;
+  height: auto;
 }
 
 .logo:hover {
-  opacity: 0.7;
+  opacity: 0.8;
+}
+
+@media (max-width: 800px) {
+  .logo {
+    width: 190px;
+  }
 }
