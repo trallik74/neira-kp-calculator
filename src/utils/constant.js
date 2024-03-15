@@ -89,3 +89,8 @@ export const hotelCost = {
     "Бюджетный сегмент": 200000,
   },
 };
+
+export const counterSettings = {
+  MinQuantity: 1,
+  MaxQuantity: 5,
+};

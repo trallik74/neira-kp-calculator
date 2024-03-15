@@ -2,6 +2,7 @@ import { IconButton, Typography } from "@mui/material";
 import styles from "./ServcesCounter.module.css";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
+import { counterSettings } from "../../utils/constant";
 
 function ServcesCounter({
   id,
@@ -25,7 +26,7 @@ function ServcesCounter({
         aria-label="increase"
         size="small"
         onClick={onIncrease}
-        disabled={quantity > 4}
+        disabled={quantity >= counterSettings.MaxQuantity}
       >
         <AddIcon fontSize="inherit" />
       </IconButton>
@@ -34,7 +35,7 @@ function ServcesCounter({
         aria-label="Decrease"
         size="small"
         onClick={onDecrease}
-        disabled={quantity < 1}
+        disabled={quantity < counterSettings.MinQuantity}
       >
         <RemoveIcon fontSize="inherit" />
       </IconButton>

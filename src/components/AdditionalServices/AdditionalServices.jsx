@@ -11,6 +11,7 @@ import styles from "./AdditionalServices.module.css";
 import ServcesCounter from "../ServcesCounter/ServcesCounter";
 import { orderAction } from "../../store/slices";
 import { useDispatch, useSelector } from "react-redux";
+import { counterSettings } from "../../utils/constant";
 
 function AdditionalServices({ data }) {
   const orderValues = useSelector((state) => state.order.order);
@@ -27,9 +28,14 @@ function AdditionalServices({ data }) {
   function handleCounterIncrease({ id, name, price, quantity }) {
     if (quantity === 0) {
       dispatch(
-        orderAction.setAdditionalService({ id, name, price, quantity: 1 })
+        orderAction.setAdditionalService({
+          id,
+          name,
+          price,
+          quantity: counterSettings.MinQuantity,
+        })
       );
-    } else if (quantity < 5) {
+    } else if (quantity < counterSettings.MaxQuantity) {
       dispatch(
         orderAction.changeServiceQuantity({ id, quantity: quantity + 1 })
       );
@@ -37,9 +43,9 @@ function AdditionalServices({ data }) {
   }
 
   function handleCounterDecrease({ id, quantity }) {
-    if (quantity === 1) {
+    if (quantity === counterSettings.MinQuantity) {
       dispatch(orderAction.removeAdditionalService({ id }));
-    } else if (quantity > 1) {
+    } else if (quantity > counterSettings.MinQuantity) {
       dispatch(
         orderAction.changeServiceQuantity({ id, quantity: quantity - 1 })
       );
@@ -109,7 +115,7 @@ function AdditionalServices({ data }) {
                         id: index + 2,
                         name: item.text,
                         price: item.price,
-                        quantity: 1,
+                        quantity: counterSettings.MinQuantity,
                       });
                     }}
                   />
