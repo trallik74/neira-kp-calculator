@@ -8,44 +8,40 @@ import {
 } from "@mui/material";
 import { ArrowDropDown } from "@mui/icons-material";
 import styles from "./AdditionalServices.module.css";
-import { useState } from "react";
 import ServcesCounter from "../ServcesCounter/ServcesCounter";
+import { orderAction } from "../../store/slices";
+import { useDispatch, useSelector } from "react-redux";
 
 function AdditionalServices({ data }) {
-  const [order, setOrder] = useState([]);
+  const orderValues = useSelector((state) => state.order.order);
+  const dispatch = useDispatch();
 
   function toogleCheckbox({ id, name, price, quantity }) {
-    if (order.find((item) => item.id === id)) {
-      setOrder([...order.filter((item) => item.id !== id)]);
+    if (orderValues.find((item) => item.id === id)) {
+      dispatch(orderAction.removeAdditionalService({ id }));
     } else {
-      setOrder([...order, { id, name, price, quantity }]);
+      dispatch(orderAction.setAdditionalService({ id, name, price, quantity }));
     }
   }
 
   function handleCounterIncrease({ id, name, price, quantity }) {
     if (quantity === 0) {
-      setOrder([...order, { id, name, price, quantity: 1 }]);
+      dispatch(
+        orderAction.setAdditionalService({ id, name, price, quantity: 1 })
+      );
     } else if (quantity < 5) {
-      setOrder(
-        order.map((item) => {
-          return item.id === id
-            ? { id, name, price, quantity: item.quantity + 1 }
-            : item;
-        })
+      dispatch(
+        orderAction.changeServiceQuantity({ id, quantity: quantity + 1 })
       );
     }
   }
 
-  function handleCounterDecrease({ id, name, price, quantity }) {
+  function handleCounterDecrease({ id, quantity }) {
     if (quantity === 1) {
-      setOrder([...order.filter((item) => item.id !== id)]);
+      dispatch(orderAction.removeAdditionalService({ id }));
     } else if (quantity > 1) {
-      setOrder(
-        order.map((item) => {
-          return item.id === id
-            ? { id, name, price, quantity: item.quantity - 1 }
-            : item;
-        })
+      dispatch(
+        orderAction.changeServiceQuantity({ id, quantity: quantity - 1 })
       );
     }
   }
@@ -91,11 +87,12 @@ function AdditionalServices({ data }) {
               </Typography>
               {item.isMultyQuantity ? (
                 <ServcesCounter
-                  id={index}
+                  id={index + 2}
                   name={item.text}
                   price={item.price}
                   quantity={
-                    order.find((item) => item.id === index)?.quantity || 0
+                    orderValues.find((item) => item.id === index + 2)
+                      ?.quantity || 0
                   }
                   handleCounterIncrease={handleCounterIncrease}
                   handleCounterDecrease={handleCounterDecrease}
@@ -104,10 +101,12 @@ function AdditionalServices({ data }) {
                 <div className={styles.wrapper}>
                   <Checkbox
                     size="small"
-                    checked={!!order.find((item) => item.id === index)}
+                    checked={
+                      !!orderValues.find((item) => item.id === index + 2)
+                    }
                     onChange={() => {
                       toogleCheckbox({
-                        id: index,
+                        id: index + 2,
                         name: item.text,
                         price: item.price,
                         quantity: 1,

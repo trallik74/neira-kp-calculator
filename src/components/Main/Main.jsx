@@ -2,15 +2,30 @@ import { Box, Container } from "@mui/material";
 import styles from "./Main.module.css";
 import SelectArea from "../SelectArea/SelectArea";
 import { useDispatch, useSelector } from "react-redux";
-import { selectValuesAction } from "../../store/slices";
+import { selectValuesAction, orderAction } from "../../store/slices";
+import { useEffect } from "react";
+import { hotelCost } from "../../utils/constant";
 
 function Main() {
-  const values = useSelector((state) => state.selectValues);
+  const selectValues = useSelector((state) => state.selectValues);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (selectValues["select-city"] && selectValues["select-hotel"]) {
+      dispatch(
+        orderAction.setHotel({
+          price:
+            hotelCost[selectValues["select-city"]][
+              selectValues["select-hotel"]
+            ],
+        })
+      );
+    }
+  }, [selectValues["select-city"], selectValues["select-hotel"]]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    if (values["select-city"] === "Другой город") {
+    if (selectValues["select-city"] === "Другой город") {
       const input = document.getElementById("other-city");
       console.log(input.value === "");
       if (input.value === "") {
@@ -24,8 +39,8 @@ function Main() {
         return;
       }
     }
-    console.log('success');
-    console.log(values);
+    console.log("success");
+    console.log(selectValues);
   }
 
   return (
@@ -44,9 +59,9 @@ function Main() {
           onSubmit={handleSubmit}
         >
           <SelectArea />
-          {values["select-city"] &&
-            values["select-event"] &&
-            values["select-hotel"] && (
+          {selectValues["select-city"] &&
+            selectValues["select-event"] &&
+            selectValues["select-hotel"] && (
               <button type="submit">Связаться с нами</button>
             )}
         </form>

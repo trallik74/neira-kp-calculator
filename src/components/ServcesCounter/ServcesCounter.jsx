@@ -16,7 +16,7 @@ function ServcesCounter({
   }
 
   function onDecrease() {
-    handleCounterDecrease({ id, name, price, quantity });
+    handleCounterDecrease({ id, quantity });
   }
 
   return (
@@ -30,7 +30,12 @@ function ServcesCounter({
         <AddIcon fontSize="inherit" />
       </IconButton>
       <Typography sx={{ m: "0 10px" }}>{quantity}</Typography>
-      <IconButton aria-label="Decrease" size="small" onClick={onDecrease} disabled={quantity < 1}>
+      <IconButton
+        aria-label="Decrease"
+        size="small"
+        onClick={onDecrease}
+        disabled={quantity < 1}
+      >
         <RemoveIcon fontSize="inherit" />
       </IconButton>
     </div>
