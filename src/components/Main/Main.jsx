@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectValuesAction, orderAction } from "../../store/slices";
 import { useEffect } from "react";
 import { hotelCost } from "../../utils/constant";
+import Order from "../Order/Order";
 
 function Main() {
   const selectValues = useSelector((state) => state.selectValues);
@@ -13,7 +14,7 @@ function Main() {
   useEffect(() => {
     if (selectValues["select-city"] && selectValues["select-hotel"]) {
       dispatch(
-        orderAction.setHotel({
+        orderAction.setHotelCost({
           price:
             hotelCost[selectValues["select-city"]][
               selectValues["select-hotel"]
@@ -62,7 +63,10 @@ function Main() {
           {selectValues["select-city"] &&
             selectValues["select-event"] &&
             selectValues["select-hotel"] && (
-              <button type="submit">Связаться с нами</button>
+              <>
+                <Order />
+                <button type="submit">Связаться с нами</button>
+              </>
             )}
         </form>
       </Container>

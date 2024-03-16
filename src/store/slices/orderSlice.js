@@ -9,7 +9,7 @@ export const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    setHotel: (state, action) => {
+    setHotelCost: (state, action) => {
       const hotel = state.order.find(
         (item) => item.name === "Аренда помещения"
       );

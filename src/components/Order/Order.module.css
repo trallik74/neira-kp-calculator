@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+  width: 100%;
+  margin: 24px 0;
+  background-color: #fff;
+  box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.2), 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.text {
+  margin: 0;
+  line-height: 1.2;
+  font-size: 16px;
+}
+
+.heading {
+  font-weight: 700;
+}
+
+.number {
+  max-width: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.name {
+  max-width: 200px;
+  width: 100%;
+  text-align: center;
+}
+
+.price {
+  max-width: 65px;
+  width: 100%;
+  text-align: center;
+}
+
+.quantity {
+  max-width: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+.sum {
+  max-width: 65px;
+  width: 100%;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.currency {
+  margin-top: 8px;
+}
+
+.totalCost {
+  align-self: flex-end;
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 8px;
+    gap: 8px;
+  }
+  .text {
+    font-size: 14px;
+  }
+}
