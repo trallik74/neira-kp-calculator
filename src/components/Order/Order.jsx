@@ -41,16 +41,12 @@ function Order() {
         <p className={[styles.text, styles.name].join(" ")}>Основные услуги</p>
         <p className={[styles.text, styles.price].join(" ")}>
           {getСommission()}
-          <Typography variant="caption" component="span">
-            ₽
-          </Typography>
+          <span className={styles.currency}>₽</span>
         </p>
         <p className={[styles.text, styles.quantity].join(" ")}>1</p>
         <p className={[styles.text, styles.sum].join(" ")}>
           {getСommission()}
-          <Typography variant="caption" component="span">
-            ₽
-          </Typography>
+          <span className={styles.currency}>₽</span>
         </p>
       </div>
       {orderList
@@ -73,9 +69,7 @@ function Order() {
               </p>
               <p className={[styles.text, styles.sum].join(" ")}>
                 {item.quantity * item.price}
-                <Typography variant="caption" component="span">
-                  ₽
-                </Typography>
+                <span className={styles.currency}>₽</span>
               </p>
             </div>
           );

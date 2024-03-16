@@ -45,7 +45,7 @@ function Main() {
   }
 
   return (
-    <Box component="main">
+    <Box component="main" sx={{minHeight: '100vh'}}>
       <Container
         maxWidth="xl"
         sx={{
