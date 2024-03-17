@@ -3,6 +3,9 @@ import { counterSettings } from "../../utils/constant";
 
 const initialState = {
   order: [],
+  comissionCost: 0,
+  servicesCost: 0,
+  totalCost: 0,
 };
 
 export const orderSlice = createSlice({
@@ -40,6 +43,14 @@ export const orderSlice = createSlice({
     changeServiceQuantity: (state, action) => {
       const service = state.order.find((item) => item.id === action.payload.id);
       if (service) service.quantity = action.payload.quantity;
+    },
+    setAssestedCost: (state, action) => {
+      state.servicesCost = state.order.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0
+      );
+      state.comissionCost = state.servicesCost * action.payload.coefficient;
+      state.totalCost = state.servicesCost + state.comissionCost;
     },
   },
 });

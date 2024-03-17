@@ -53,11 +53,15 @@ function AdditionalServices({ data }) {
   }
 
   return (
-    <Accordion sx={{ maxWidth: 500, mt: 2, width: "100%" }}>
+    <Accordion
+      sx={{ maxWidth: 500, mt: 2, width: "100%" }}
+      defaultExpanded={true}
+      disableGutters={true}
+    >
       <AccordionSummary
         expandIcon={<ArrowDropDown />}
-        aria-controls="panel2-content"
-        id="panel2-header"
+        aria-controls="additional-services"
+        id="additional-services"
         sx={{ padding: "0px 7px 0 12px" }}
       >
         <Typography component="p">Дополнительные услуги</Typography>

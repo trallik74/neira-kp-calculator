@@ -1,4 +1,5 @@
-import { Box, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
+import { servicesList } from "../../utils/constant";
 import styles from "./Main.module.css";
 import SelectArea from "../SelectArea/SelectArea";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +7,7 @@ import { selectValuesAction, orderAction } from "../../store/slices";
 import { useEffect } from "react";
 import { hotelCost } from "../../utils/constant";
 import Order from "../Order/Order";
+import AdditionalServices from "../AdditionalServices/AdditionalServices";
 
 function Main() {
   const selectValues = useSelector((state) => state.selectValues);
@@ -45,7 +47,7 @@ function Main() {
   }
 
   return (
-    <Box component="main" sx={{minHeight: '100vh'}}>
+    <Box component="main" sx={{ minHeight: "100vh" }}>
       <Container
         maxWidth="xl"
         sx={{
@@ -60,14 +62,39 @@ function Main() {
           onSubmit={handleSubmit}
         >
           <SelectArea />
-          {selectValues["select-city"] &&
-            selectValues["select-event"] &&
-            selectValues["select-hotel"] && (
-              <>
-                <Order />
-                <button type="submit">Связаться с нами</button>
-              </>
-            )}
+
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            gap="20px"
+            mt="10px"
+            width="100%"
+            sx={
+              selectValues["select-city"] &&
+              selectValues["select-hotel"] &&
+              selectValues["select-event"]
+                ? {
+                    visibility: "visible",
+                    opacity: 1,
+                    transition: "opacity 1s ease-in-out",
+                  }
+                : {
+                    visibility: "hidden",
+                    opacity: 0,
+                  }
+            }
+          >
+            {selectValues["select-city"] &&
+              selectValues["select-hotel"] &&
+              selectValues["select-event"] && (
+                <>
+                  <AdditionalServices data={servicesList} />
+                  <Order />
+                  <Button type="submit">Связаться с нами</Button>
+                </>
+              )}
+          </Box>
         </form>
       </Container>
     </Box>

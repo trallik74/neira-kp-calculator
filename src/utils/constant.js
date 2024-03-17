@@ -90,6 +90,13 @@ export const hotelCost = {
   },
 };
 
+export const commisionСoefficient = {
+  Самара: 0.3,
+  "Другой город": 0.3,
+  "Санкт-Петербург": 0.5,
+  Москва: 0.5,
+};
+
 export const counterSettings = {
   MinQuantity: 1,
   MaxQuantity: 5,

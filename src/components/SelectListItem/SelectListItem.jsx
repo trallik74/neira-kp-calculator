@@ -38,7 +38,7 @@ function SelectListItem({ name, label, selectOptions }) {
   };
 
   return (
-    <FormControl sx={{ m: 1, maxWidth: 500, width: "100%" }}>
+    <FormControl sx={{ m: 1, maxWidth: 500, width: "100%" }} required={true}>
       <InputLabel id={`label-${name}`}>{label}</InputLabel>
       <Select
         labelId={`label-${name}`}
@@ -51,6 +51,7 @@ function SelectListItem({ name, label, selectOptions }) {
         sx={{
           backgroundColor: "transparent",
         }}
+        MenuProps={{ disableScrollLock: true }}
       >
         {selectOptions.map((item, index) => (
           <MenuItem key={index} value={item.text}>

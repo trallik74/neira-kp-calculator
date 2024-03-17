@@ -1,17 +1,22 @@
 import { Divider, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Order.module.css";
+import { commisionСoefficient } from "../../utils/constant";
+import { orderAction } from "../../store/slices";
+import { useEffect } from "react";
 
 function Order() {
   const orderList = useSelector((state) => state.order.order);
+  const comissionCost = useSelector((state) => state.order.comissionCost);
+  const totalCost = useSelector((state) => state.order.totalCost);
+  const city = useSelector((state) => state.selectValues["select-city"]);
+  const dispatch = useDispatch();
 
-  function getServiceCost() {
-    return orderList.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  }
-
-  function getСommission() {
-    return getServiceCost() * 0.4;
-  }
+  useEffect(() => {
+    dispatch(
+      orderAction.setAssestedCost({ coefficient: commisionСoefficient[city] })
+    );
+  }, [orderList, city]);
 
   return (
     <div className={styles.container}>
@@ -40,12 +45,12 @@ function Order() {
         <p className={[styles.text, styles.number].join(" ")}>1</p>
         <p className={[styles.text, styles.name].join(" ")}>Основные услуги</p>
         <p className={[styles.text, styles.price].join(" ")}>
-          {getСommission()}
+          {comissionCost}
           <span className={styles.currency}>₽</span>
         </p>
-        <p className={[styles.text, styles.quantity].join(" ")}>1</p>
+        <p className={[styles.text, styles.quantity].join(" ")}>x1</p>
         <p className={[styles.text, styles.sum].join(" ")}>
-          {getСommission()}
+          {comissionCost}
           <span className={styles.currency}>₽</span>
         </p>
       </div>
@@ -76,7 +81,7 @@ function Order() {
         })}
       <Divider />
       <p className={[styles.text, styles.totalCost].join(" ")}>
-        Итого: ~{getServiceCost() + getСommission()}
+        Итого: ~{totalCost}
         <span className={styles.currency}>₽</span>
       </p>
     </div>

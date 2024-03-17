@@ -1,15 +1,9 @@
 import SelectListItem from "../SelectListItem/SelectListItem";
-import { selectListConfig, servicesList } from "../../utils/constant";
-import AdditionalServices from "../AdditionalServices/AdditionalServices";
-import { Typography } from "@mui/material";
-
+import { selectListConfig } from "../../utils/constant";
 
 function SelectArea() {
   return (
     <>
-      <Typography variant="h5" component="p">
-        Заполните поля
-      </Typography>
       {selectListConfig.map((item, index) => (
         <SelectListItem
           name={item.name}
@@ -18,7 +12,6 @@ function SelectArea() {
           key={index}
         />
       ))}
-      <AdditionalServices data={servicesList} />
     </>
   );
 }
