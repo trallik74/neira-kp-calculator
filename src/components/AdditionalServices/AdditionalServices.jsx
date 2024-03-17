@@ -54,7 +54,7 @@ function AdditionalServices({ data }) {
 
   return (
     <Accordion
-      sx={{ maxWidth: 500, mt: 2, width: "100%" }}
+      sx={{ maxWidth: 500, width: "100%" }}
       defaultExpanded={true}
       disableGutters={true}
     >
@@ -71,30 +71,13 @@ function AdditionalServices({ data }) {
         <div className={styles.container}>
           {data.map((item, index) => (
             <div key={index} className={styles.row}>
-              <Typography
-                sx={{
-                  maxWidth: "300px",
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
+              <p className={[styles.text, styles.name].join(" ")}>
                 {item.text}
-              </Typography>
-              <Typography
-                sx={{
-                  maxWidth: "100px",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              </p>
+              <p className={[styles.text, styles.price].join(" ")}>
                 {item.price}
-                <Typography variant="caption" component="span" sx={{ mt: 1 }}>
-                  ₽
-                </Typography>
-              </Typography>
+                <span className={styles.currency}>₽</span>
+              </p>
               {item.isMultyQuantity ? (
                 <ServcesCounter
                   id={index + 2}
