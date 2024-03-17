@@ -66,6 +66,17 @@
   align-self: flex-end;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.services {
+  color: #1976d2;
+}
+
 @media (max-width: 500px) {
   .container {
     padding: 8px;
@@ -73,5 +84,17 @@
   }
   .text {
     font-size: 14px;
+  }
+}
+
+@media (hover: hover) {
+  .services:hover {
+    opacity: 0.8;
+  }
+}
+
+@media (hover: none) {
+  .services:active {
+    opacity: 0.8;
   }
 }

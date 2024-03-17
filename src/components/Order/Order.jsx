@@ -1,4 +1,10 @@
-import { Divider, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Divider,
+  Typography,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Order.module.css";
 import { commisionСoefficient } from "../../utils/constant";
@@ -41,9 +47,46 @@ function Order() {
           Сумма
         </p>
       </div>
-      <div className={styles.row}>
+      <div className={styles.row} style={{ alignItems: "center" }}>
         <p className={[styles.text, styles.number].join(" ")}>1</p>
-        <p className={[styles.text, styles.name].join(" ")}>Основные услуги</p>
+        <p className={[styles.text, styles.name].join(" ")}>
+          <Accordion
+            sx={{ maxWidth: "200px", width: "100%", boxShadow: "none" }}
+            disableGutters={true}
+            slotProps={{ sx: { m: 0 } }}
+          >
+            <AccordionSummary
+              aria-controls="additional-services"
+              id="additional-services"
+              color="red"
+              sx={{ p: 0, display: "flex", justifyContent: "center" }}
+            >
+              <p
+                className={[styles.text, styles.name, styles.services].join(
+                  " "
+                )}
+              >
+                Основные услуги
+              </p>
+            </AccordionSummary>
+            <AccordionDetails sx={{ p: 0 }}>
+              <div className={styles.wrapper}>
+                <p className={[styles.text, styles.name].join(" ")}>
+                  Анализ аудитории
+                </p>
+                <p className={[styles.text, styles.name].join(" ")}>
+                  Подготовка и подбор спикеров
+                </p>
+                <p className={[styles.text, styles.name].join(" ")}>
+                  Разработка программы мероприятия
+                </p>
+                <p className={[styles.text, styles.name].join(" ")}>
+                  Кейтеринг
+                </p>
+              </div>
+            </AccordionDetails>
+          </Accordion>
+        </p>
         <p className={[styles.text, styles.price].join(" ")}>
           {comissionCost}
           <span className={styles.currency}>₽</span>
