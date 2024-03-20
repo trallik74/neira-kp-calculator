@@ -65,7 +65,6 @@ function SelectListItem({ name, label, selectOptions }) {
             id="other-city"
             name="other-city"
             placeholder="Введите название города"
-            autoFocus
             value={values["other-city"] || ""}
             onChange={handleChange}
             required

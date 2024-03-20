@@ -49,7 +49,7 @@ function Order() {
       </div>
       <div className={styles.row} style={{ alignItems: "center" }}>
         <p className={[styles.text, styles.number].join(" ")}>1</p>
-        <p className={[styles.text, styles.name].join(" ")}>
+        <div className={[styles.text, styles.name].join(" ")}>
           <Accordion
             sx={{ maxWidth: "200px", width: "100%", boxShadow: "none" }}
             disableGutters={true}
@@ -58,7 +58,6 @@ function Order() {
             <AccordionSummary
               aria-controls="additional-services"
               id="additional-services"
-              color="red"
               sx={{ p: 0, display: "flex", justifyContent: "center" }}
             >
               <p
@@ -86,7 +85,7 @@ function Order() {
               </div>
             </AccordionDetails>
           </Accordion>
-        </p>
+        </div>
         <p className={[styles.text, styles.price].join(" ")}>
           {comissionCost}
           <span className={styles.currency}>₽</span>

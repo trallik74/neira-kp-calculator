@@ -9,7 +9,7 @@ import { hotelCost } from "../../utils/constant";
 import Order from "../Order/Order";
 import AdditionalServices from "../AdditionalServices/AdditionalServices";
 
-function Main() {
+function Main({ handlePopupOpen }) {
   const selectValues = useSelector((state) => state.selectValues);
   const dispatch = useDispatch();
 
@@ -30,7 +30,6 @@ function Main() {
     evt.preventDefault();
     if (selectValues["select-city"] === "Другой город") {
       const input = document.getElementById("other-city");
-      console.log(input.value === "");
       if (input.value === "") {
         dispatch(
           selectValuesAction.setError({
@@ -40,14 +39,26 @@ function Main() {
         );
         input.focus();
         return;
+      } else if (
+        ["Самара", "Москва", "Санкт-Петербург"].some(
+          (item) => item.toLowerCase() === input.value.toLowerCase()
+        )
+      ) {
+        dispatch(
+          selectValuesAction.setError({
+            name: "other-city",
+            error: "Введите название города, не из основной категории.",
+          })
+        );
+        input.focus();
+        return;
       }
     }
-    console.log("success");
-    console.log(selectValues);
+    handlePopupOpen();
   }
 
   return (
-    <Box component="main" sx={{ minHeight: "100vh" }}>
+    <Box component="main" sx={{ minHeight: "100vh", pb: "50px" }}>
       <Container
         maxWidth="xl"
         sx={{
@@ -62,7 +73,6 @@ function Main() {
           onSubmit={handleSubmit}
         >
           <SelectArea />
-
           <Box
             display="flex"
             flexDirection="column"
@@ -91,7 +101,9 @@ function Main() {
                 <>
                   <AdditionalServices data={servicesList} />
                   <Order />
-                  <Button type="submit">Связаться с нами</Button>
+                  <Button type="submit" variant="contained" focusRipple={false}>
+                    Связаться с нами
+                  </Button>
                 </>
               )}
           </Box>
