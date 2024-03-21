@@ -7,9 +7,19 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./Popup.module.css";
+import { MuiTelInput, matchIsValidTel } from "mui-tel-input";
+import { useState } from "react";
 
 function Popup({ isPopupOpen, handlePopupClose }) {
-  
+  const [phone, setPhone] = useState("");
+
+  function handleChange(value, info) {
+    if (info.numberValue.length <= 12) {
+      setPhone(info.numberValue);
+    }
+    console.log(matchIsValidTel(value));
+  }
+
   return (
     <Modal
       open={isPopupOpen}
@@ -58,6 +68,7 @@ function Popup({ isPopupOpen, handlePopupClose }) {
               label="Ваше имя"
               variant="outlined"
               fullWidth
+              InputLabelProps={{ shrink: true }}
             />
             <FormHelperText
               sx={{
@@ -74,15 +85,16 @@ function Popup({ isPopupOpen, handlePopupClose }) {
               width: "100%",
             }}
           >
-            <TextField
+            <MuiTelInput
               id="user-phone"
               name="user-phone"
-              required
-              type="tel"
               label="Номер телефона"
-              variant="outlined"
-              fullWidth
-              inputProps={{ style: { p: 0 } }}
+              required
+              value={phone}
+              onChange={handleChange}
+              forceCallingCode
+              defaultCountry="RU"
+              disableDropdown
             />
             <FormHelperText
               sx={{
@@ -107,6 +119,7 @@ function Popup({ isPopupOpen, handlePopupClose }) {
               label="Ваш E-mail"
               variant="outlined"
               fullWidth
+              InputLabelProps={{ shrink: true }}
             />
             <FormHelperText
               sx={{
