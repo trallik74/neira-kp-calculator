@@ -102,7 +102,7 @@ function Main({ handlePopupOpen }) {
                   <AdditionalServices data={servicesList} />
                   <Order />
                   <Button type="submit" variant="contained" focusRipple={false}>
-                    Связаться с нами
+                    Оставить заявку
                   </Button>
                 </>
               )}
