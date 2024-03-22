@@ -101,3 +101,18 @@ export const counterSettings = {
   MinQuantity: 1,
   MaxQuantity: 5,
 };
+
+export const validationSettings = {
+  phone: {
+    message: "Введен неверный номер телефона",
+  },
+  name: {
+    message:
+      "Имя должно содержать только кириллицу, латиницу, пробел или дефис и иметь длину не менее двух символов.",
+    pattern: /[^a-zA-Zа-яА-Я -]/,
+    minLength: 2,
+  },
+  email: {
+    message: "Введен неверный формат электронной почты",
+  },
+};

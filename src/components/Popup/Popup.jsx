@@ -8,22 +8,42 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./Popup.module.css";
 import { MuiTelInput, matchIsValidTel } from "mui-tel-input";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userAction } from "../../store/slices";
 
 function Popup({ isPopupOpen, handlePopupClose }) {
-  const [phone, setPhone] = useState("");
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  function handleChange(value, info) {
-    if (info.numberValue.length <= 12) {
-      setPhone(info.numberValue);
+  function handlePhoneChange(value) {
+    dispatch(userAction.setPhone({ value, isValid: matchIsValidTel(value) }));
+  }
+
+  function handleChange(evt) {
+    if (evt.target.name === "name") {
+      dispatch(userAction.setName({ value: evt.target.value }));
+    } else {
+      dispatch(userAction.setEmail({ value: evt.target.value }));
     }
-    console.log(matchIsValidTel(value));
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    dispatch(userAction.setShowErrorFlag());
+    if (user.name.isValid && user.phone.isValid && user.email.isValid) {
+      console.log("submited");
+    }
+  }
+
+  function onClose() {
+    dispatch(userAction.resetShowErrorFlag());
+    handlePopupClose();
   }
 
   return (
     <Modal
       open={isPopupOpen}
-      onClose={handlePopupClose}
+      onClose={onClose}
       aria-labelledby="Модальное окно обратной связи"
       aria-describedby="Модальное окно с формой обратной связи"
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
@@ -33,7 +53,7 @@ function Popup({ isPopupOpen, handlePopupClose }) {
         <button
           aria-label="Кнопка закрытия попапа"
           className={styles.button}
-          onClick={handlePopupClose}
+          onClick={onClose}
         >
           <CloseIcon
             viewBox="5 5 14 14"
@@ -48,10 +68,7 @@ function Popup({ isPopupOpen, handlePopupClose }) {
           noValidate
           autoComplete="off"
           className={styles.form}
-          onSubmit={(evt) => {
-            evt.preventDefault();
-            console.log(1);
-          }}
+          onSubmit={handleSubmit}
         >
           <h2 className={styles.title}>Пожалуйста заполните форму</h2>
           <FormControl
@@ -59,82 +76,105 @@ function Popup({ isPopupOpen, handlePopupClose }) {
               maxWidth: "300px",
               width: "100%",
             }}
+            error={user.name.showErrorFlag && !!user.name.errorMessage}
           >
             <TextField
-              id="user-name"
-              name="user-name"
+              id="name"
+              name="name"
+              onChange={handleChange}
+              value={user.name.value}
               required
-              type="text"
               label="Ваше имя"
               variant="outlined"
               fullWidth
               InputLabelProps={{ shrink: true }}
+              inputProps={{ maxLength: 30 }}
+              error={user.name.showErrorFlag && !!user.name.errorMessage}
             />
             <FormHelperText
               sx={{
-                minHeight: "30px",
+                minHeight: "50px",
                 m: "0 2px",
                 fontSize: "11px",
                 lineHeight: "13px",
               }}
-            ></FormHelperText>
+            >
+              {user.name.showErrorFlag && user.name.errorMessage}
+            </FormHelperText>
           </FormControl>
           <FormControl
             sx={{
               maxWidth: "300px",
               width: "100%",
             }}
+            error={user.phone.showErrorFlag && !!user.phone.errorMessage}
           >
             <MuiTelInput
-              id="user-phone"
-              name="user-phone"
+              id="phone"
+              name="phone"
               label="Номер телефона"
               required
-              value={phone}
-              onChange={handleChange}
+              value={user.phone.value}
+              onChange={handlePhoneChange}
               forceCallingCode
               defaultCountry="RU"
               disableDropdown
+              inputProps={{
+                style: { padding: "15px 10px 15px 0", lineHeight: "1.5" },
+                maxLength: 13,
+              }}
+              error={user.phone.showErrorFlag && !!user.phone.errorMessage}
             />
             <FormHelperText
               sx={{
-                minHeight: "30px",
+                minHeight: "50px",
                 m: "0 2px",
                 fontSize: "11px",
                 lineHeight: "13px",
               }}
-            ></FormHelperText>
+            >
+              {user.phone.showErrorFlag && user.phone.errorMessage}
+            </FormHelperText>
           </FormControl>
           <FormControl
             sx={{
               maxWidth: "300px",
               width: "100%",
             }}
+            error={user.email.showErrorFlag && !!user.email.errorMessage}
           >
             <TextField
-              id="user-email"
-              name="user-email"
+              id="email"
+              name="email"
+              onChange={handleChange}
+              value={user.email.value}
               required
               type="text"
               label="Ваш E-mail"
               variant="outlined"
               fullWidth
               InputLabelProps={{ shrink: true }}
+              error={user.email.showErrorFlag && !!user.email.errorMessage}
             />
             <FormHelperText
               sx={{
-                minHeight: "30px",
+                minHeight: "40px",
                 m: "0 2px",
                 fontSize: "11px",
                 lineHeight: "13px",
               }}
-            ></FormHelperText>
+            >
+              {user.email.showErrorFlag && user.email.errorMessage}
+            </FormHelperText>
           </FormControl>
           <Button
             type="submit"
             variant="contained"
             focusRipple={false}
             sx={{ mt: "10px" }}
+            disabled={
+              user.email.isEmpty || user.name.isEmpty || user.phone.isEmpty
+            }
           >
             Отправить
           </Button>
