@@ -11,7 +11,7 @@ import { MuiTelInput, matchIsValidTel } from "mui-tel-input";
 import { useDispatch, useSelector } from "react-redux";
 import { userAction } from "../../store/slices";
 
-function Popup({ isPopupOpen, handlePopupClose }) {
+function Popup({ isPopupOpen, handlePopupClose, sendEmail, isSending }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ function Popup({ isPopupOpen, handlePopupClose }) {
     evt.preventDefault();
     dispatch(userAction.setShowErrorFlag());
     if (user.name.isValid && user.phone.isValid && user.email.isValid) {
-      console.log("submited");
+      sendEmail();
     }
   }
 
@@ -175,10 +175,10 @@ function Popup({ isPopupOpen, handlePopupClose }) {
             size="large"
             sx={{ mt: "10px", maxWidth: "300px" }}
             disabled={
-              user.email.isEmpty || user.name.isEmpty || user.phone.isEmpty
+              isSending || user.email.isEmpty || user.name.isEmpty || user.phone.isEmpty
             }
           >
-            Отправить
+            {isSending ? "Отправка..." : "Отправить"}
           </Button>
           <span className={styles.dataPolicy}>
             Отправляя форму, вы подтверждаете, что даете согласие на{" "}
