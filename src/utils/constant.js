@@ -116,3 +116,18 @@ export const validationSettings = {
     message: "Введен неверный формат электронной почты",
   },
 };
+
+
+
+export const emailjsConfig = {
+  option: {
+    publicKey: "_3gh8Vj77SWrs80LJ",
+    blockHeadless: true,
+    limitRate: {
+      id: "app",
+      throttle: 5000,
+    },
+  },
+  templateId: "template_oj7eqbl",
+  serviceId: "service_ug4vfyd",
+};

@@ -4,6 +4,8 @@ import Main from "../Main/Main";
 import Popup from "../Popup/Popup";
 import { useSelector } from "react-redux";
 import emailjs from "@emailjs/browser";
+import { emailjsConfig } from "../../utils/constant";
+import { formatParams } from "../../utils/config";
 
 function App() {
   const state = useSelector((state) => state);
@@ -15,50 +17,18 @@ function App() {
   }
 
   function sendEmail() {
-    let order = "";
-
-    state.order.order.forEach((item) => {
-      order +=
-        "Название: " +
-        item.name +
-        " Цена: " +
-        item.price +
-        " Кол-во x" +
-        item.quantity +
-        " Сумма: " +
-        item.price * item.quantity +
-        "\n";
-    });
-
-    const templateParams = {
-      name: state.user.name.value,
-      phone: state.user.phone.value,
-      email: state.user.email.value,
-      city: state.selectValues["select-city"],
-      hotel: state.selectValues["select-hotel"],
-      event: state.selectValues["select-event"],
-      other: state.selectValues["other-city"],
-      order: order,
-      comissionCost: state.order.comissionCost,
-      totalCost: state.order.totalCost,
-    };
-
-    const options = {
-      publicKey: "_3gh8Vj77SWrs80LJ",
-      blockHeadless: true,
-      limitRate: {
-        id: "app",
-        throttle: 5000,
-      },
-    };
-
     setIsSending(true);
     emailjs
-      .send("service_ug4vfyd", "template_oj7eqbl", templateParams, options)
+      .send(
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
+        formatParams(state),
+        emailjsConfig.option
+      )
       .then(
         (response) => {
           console.log("SUCCESS!", response.status, response.text);
-          handlePopupState()
+          handlePopupState();
         },
         (error) => {
           return Promise.reject(error);
