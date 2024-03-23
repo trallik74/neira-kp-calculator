@@ -158,7 +158,7 @@ function Popup({ isPopupOpen, handlePopupClose }) {
             />
             <FormHelperText
               sx={{
-                minHeight: "40px",
+                minHeight: "30px",
                 m: "0 2px",
                 fontSize: "11px",
                 lineHeight: "13px",
@@ -171,13 +171,20 @@ function Popup({ isPopupOpen, handlePopupClose }) {
             type="submit"
             variant="contained"
             focusRipple={false}
-            sx={{ mt: "10px" }}
+            fullWidth
+            sx={{ mt: "10px", maxWidth: "300px" }}
             disabled={
               user.email.isEmpty || user.name.isEmpty || user.phone.isEmpty
             }
           >
             Отправить
           </Button>
+          <span className={styles.dataPolicy}>
+            Отправляя форму, вы подтверждаете, что даете согласие на{" "}
+            <a href="https://neiragroup.com/policy" target="_blank">
+              обработку персональных данных
+            </a>
+          </span>
         </form>
       </div>
     </Modal>
