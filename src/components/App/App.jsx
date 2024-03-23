@@ -48,16 +48,17 @@ function App() {
       blockHeadless: true,
       limitRate: {
         id: "app",
-        throttle: 10000,
+        throttle: 5000,
       },
     };
-    
+
     setIsSending(true);
     emailjs
       .send("service_ug4vfyd", "template_oj7eqbl", templateParams, options)
       .then(
         (response) => {
           console.log("SUCCESS!", response.status, response.text);
+          handlePopupState()
         },
         (error) => {
           return Promise.reject(error);
