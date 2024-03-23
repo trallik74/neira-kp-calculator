@@ -58,7 +58,7 @@ function Main({ handlePopupOpen }) {
   }
 
   return (
-    <Box component="main" sx={{ minHeight: "100vh", pb: "50px" }}>
+    <Box component="main" sx={{ pb: "50px" }}>
       <Container
         maxWidth="xl"
         sx={{

@@ -172,6 +172,7 @@ function Popup({ isPopupOpen, handlePopupClose }) {
             variant="contained"
             focusRipple={false}
             fullWidth
+            size="large"
             sx={{ mt: "10px", maxWidth: "300px" }}
             disabled={
               user.email.isEmpty || user.name.isEmpty || user.phone.isEmpty

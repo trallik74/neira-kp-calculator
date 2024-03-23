@@ -6,5 +6,5 @@ body {
   font-weight: 400;
   background-color: #fcfcfc;
   min-width: 320px;
+  overflow-y: scroll;
 }
-
