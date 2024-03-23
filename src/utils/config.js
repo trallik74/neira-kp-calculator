@@ -19,10 +19,14 @@ export function formatParams(state) {
     name: state.user.name.value,
     phone: state.user.phone.value,
     email: state.user.email.value,
+    company: state.user.company.value,
     city: state.selectValues["select-city"],
     hotel: state.selectValues["select-hotel"],
     event: state.selectValues["select-event"],
-    other: state.selectValues["other-city"],
+    other:
+      state.selectValues["select-city"] === "Другой город"
+        ? state.selectValues["other-city"]
+        : "",
     order: formatOrder(state.order.order),
     comissionCost: state.order.comissionCost,
     totalCost: state.order.totalCost,

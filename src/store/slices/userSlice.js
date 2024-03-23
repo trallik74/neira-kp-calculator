@@ -24,6 +24,13 @@ const initialState = {
     isEmpty: true,
     showErrorFlag: false,
   },
+  company: {
+    value: "",
+    isValid: false,
+    errorMessage: "",
+    isEmpty: true,
+    showErrorFlag: false,
+  },
 };
 
 export const userSlice = createSlice({
@@ -42,7 +49,8 @@ export const userSlice = createSlice({
     setName: (state, action) => {
       state.name.value = action.payload.value;
       state.name.isValid =
-        state.name.value.replace(/[' ']/g, "").length >= validationSettings.name.minLength &&
+        state.name.value.replace(/[' ']/g, "").length >=
+          validationSettings.name.minLength &&
         !validationSettings.name.pattern.test(state.name.value);
       state.name.isEmpty = !state.name.value.replace(/[' ']/g, "").length;
       state.name.errorMessage = state.name.isValid
@@ -59,15 +67,28 @@ export const userSlice = createSlice({
         : validationSettings.email.message;
       state.email.showErrorFlag = false;
     },
+    setCompany: (state, action) => {
+      state.company.value = action.payload.value;
+      state.company.isValid =
+        state.company.value.replace(/[' ']/g, "").length >=
+        validationSettings.company.minLength;
+      state.company.isEmpty = !state.company.value.replace(/[' ']/g, "").length;
+      state.company.errorMessage = state.company.isValid
+        ? ""
+        : validationSettings.company.message;
+      state.company.showErrorFlag = false;
+    },
     setShowErrorFlag: (state) => {
       state.phone.showErrorFlag = true;
       state.name.showErrorFlag = true;
       state.email.showErrorFlag = true;
+      state.company.showErrorFlag = true;
     },
     resetShowErrorFlag: (state) => {
       state.phone.showErrorFlag = false;
       state.name.showErrorFlag = false;
       state.email.showErrorFlag = false;
+      state.company.showErrorFlag = false;
     },
   },
 });

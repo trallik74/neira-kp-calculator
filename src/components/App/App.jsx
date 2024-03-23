@@ -17,8 +17,8 @@ function App() {
   }
 
   function sendEmail() {
-    setIsSending(true);
-    emailjs
+  /*   setIsSending(true);
+     emailjs
       .send(
         emailjsConfig.serviceId,
         emailjsConfig.templateId,
@@ -39,7 +39,8 @@ function App() {
       })
       .finally(() => {
         setIsSending(false);
-      });
+      });  */
+    console.log(formatParams(state));
   }
 
   return (

@@ -115,6 +115,11 @@ export const validationSettings = {
   email: {
     message: "Введен неверный формат электронной почты",
   },
+  company: {
+    message:
+      "Поле должно содержать не менее двух символов",
+    minLength: 2,
+  },
 };
 
 

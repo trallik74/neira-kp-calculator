@@ -22,8 +22,10 @@ function Popup({ isPopupOpen, handlePopupClose, sendEmail, isSending }) {
   function handleChange(evt) {
     if (evt.target.name === "name") {
       dispatch(userAction.setName({ value: evt.target.value }));
-    } else {
+    } else if (evt.target.name === "email") {
       dispatch(userAction.setEmail({ value: evt.target.value }));
+    } else {
+      dispatch(userAction.setCompany({ value: evt.target.value }));
     }
   }
 
@@ -107,6 +109,36 @@ function Popup({ isPopupOpen, handlePopupClose, sendEmail, isSending }) {
               maxWidth: "300px",
               width: "100%",
             }}
+            error={user.company.showErrorFlag && !!user.company.errorMessage}
+          >
+            <TextField
+              id="company"
+              name="company"
+              onChange={handleChange}
+              value={user.company.value}
+              required
+              label="Компания"
+              variant="outlined"
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              error={user.company.showErrorFlag && !!user.company.errorMessage}
+            />
+            <FormHelperText
+              sx={{
+                minHeight: "50px",
+                m: "0 2px",
+                fontSize: "11px",
+                lineHeight: "13px",
+              }}
+            >
+              {user.company.showErrorFlag && user.company.errorMessage}
+            </FormHelperText>
+          </FormControl>
+          <FormControl
+            sx={{
+              maxWidth: "300px",
+              width: "100%",
+            }}
             error={user.phone.showErrorFlag && !!user.phone.errorMessage}
           >
             <MuiTelInput
@@ -149,7 +181,7 @@ function Popup({ isPopupOpen, handlePopupClose, sendEmail, isSending }) {
               onChange={handleChange}
               value={user.email.value}
               required
-              type="text"
+              type="email"
               label="Ваш E-mail"
               variant="outlined"
               fullWidth
@@ -175,7 +207,10 @@ function Popup({ isPopupOpen, handlePopupClose, sendEmail, isSending }) {
             size="large"
             sx={{ mt: "10px", maxWidth: "300px" }}
             disabled={
-              isSending || user.email.isEmpty || user.name.isEmpty || user.phone.isEmpty
+              isSending ||
+              user.email.isEmpty ||
+              user.name.isEmpty ||
+              user.phone.isEmpty
             }
           >
             {isSending ? "Отправка..." : "Отправить"}
