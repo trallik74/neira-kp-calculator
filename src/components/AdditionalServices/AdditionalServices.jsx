@@ -60,8 +60,8 @@ function AdditionalServices({ data }) {
     >
       <AccordionSummary
         expandIcon={<ArrowDropDown />}
-        aria-controls="additional-services"
-        id="additional-services"
+        aria-controls="additional-services-content"
+        id="additional-services-header"
         sx={{ padding: "0px 7px 0 12px" }}
       >
         <Typography component="p">Дополнительные услуги</Typography>

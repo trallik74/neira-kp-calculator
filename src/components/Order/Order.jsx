@@ -56,8 +56,8 @@ function Order() {
             slotProps={{ sx: { m: 0 } }}
           >
             <AccordionSummary
-              aria-controls="additional-services"
-              id="additional-services"
+              aria-controls="order-additional-services-content"
+              id="order-additional-services-header"
               sx={{ p: 0, display: "flex", justifyContent: "center" }}
             >
               <p

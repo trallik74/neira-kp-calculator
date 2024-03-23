@@ -42,9 +42,7 @@ function SelectListItem({ name, label, selectOptions }) {
       <InputLabel id={`label-${name}`}>{label}</InputLabel>
       <Select
         labelId={`label-${name}`}
-        id={`select-${name}`}
         name={`select-${name}`}
-        label={name}
         onChange={handleChange}
         value={values[`select-${name}`] || ""}
         variant="filled"

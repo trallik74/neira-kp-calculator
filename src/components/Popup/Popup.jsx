@@ -46,8 +46,7 @@ function Popup({ isPopupOpen, handlePopupClose, sendEmail, isSending }) {
     <Modal
       open={isPopupOpen}
       onClose={onClose}
-      aria-labelledby="Модальное окно обратной связи"
-      aria-describedby="Модальное окно с формой обратной связи"
+      aria-labelledby="parent-modal-title"
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
       disableScrollLock={true}
     >
@@ -72,7 +71,9 @@ function Popup({ isPopupOpen, handlePopupClose, sendEmail, isSending }) {
           className={styles.form}
           onSubmit={handleSubmit}
         >
-          <h2 className={styles.title}>Пожалуйста заполните форму</h2>
+          <h2 className={styles.title} id="parent-modal-title">
+            Пожалуйста заполните форму
+          </h2>
           <FormControl
             sx={{
               maxWidth: "300px",
