@@ -32,7 +32,12 @@ function Popup({ isPopupOpen, handlePopupClose, sendEmail, isSending }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     dispatch(userAction.setShowErrorFlag());
-    if (user.name.isValid && user.phone.isValid && user.email.isValid) {
+    if (
+      user.name.isValid &&
+      user.phone.isValid &&
+      user.email.isValid &&
+      user.company.isValid
+    ) {
       sendEmail();
     }
   }
@@ -222,6 +227,7 @@ function Popup({ isPopupOpen, handlePopupClose, sendEmail, isSending }) {
                 isSending ||
                 user.email.isEmpty ||
                 user.name.isEmpty ||
+                user.company.isEmpty ||
                 user.phone.isEmpty
               }
             >
