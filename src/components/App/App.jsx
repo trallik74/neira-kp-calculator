@@ -12,7 +12,7 @@ function App() {
   const state = useSelector((state) => state);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [notificationSetting, setNotificationSetting] = useState({
-    isOpen: true,
+    isOpen: false,
     isError: false,
   });
   const [isSending, setIsSending] = useState(false);
