@@ -116,23 +116,26 @@ export const validationSettings = {
     message: "Введен неверный формат электронной почты",
   },
   company: {
-    message:
-      "Поле должно содержать не менее двух символов",
+    message: "Поле должно содержать не менее двух символов",
     minLength: 2,
   },
 };
 
-
-
 export const emailjsConfig = {
   option: {
-    publicKey: "_3gh8Vj77SWrs80LJ",
+    publicKey: import.meta.env.PROD
+      ? import.meta.env.APP_PUBLIC_KEY
+      : "gTyKlphzRQtIin0GD",
     blockHeadless: true,
     limitRate: {
       id: "app",
       throttle: 5000,
     },
   },
-  templateId: "template_oj7eqbl",
-  serviceId: "service_ug4vfyd",
+  templateId: import.meta.env.PROD
+    ? import.meta.env.APP_TEMPLATE_ID
+    : "template_zi7uv28",
+  serviceId: import.meta.env.PROD
+    ? import.meta.env.APP_SERVICE_ID
+    : "service_qk2fyp3",
 };
