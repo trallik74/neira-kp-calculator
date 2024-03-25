@@ -23,21 +23,21 @@ function ServcesCounter({
   return (
     <div className={styles.container}>
       <IconButton
-        aria-label="increase"
-        size="small"
-        onClick={onIncrease}
-        disabled={quantity >= counterSettings.MaxQuantity}
-      >
-        <AddIcon fontSize="inherit" />
-      </IconButton>
-      <Typography sx={{ m: "0 10px" }}>{quantity}</Typography>
-      <IconButton
         aria-label="Decrease"
         size="small"
         onClick={onDecrease}
         disabled={quantity < counterSettings.MinQuantity}
       >
         <RemoveIcon fontSize="inherit" />
+      </IconButton>
+      <Typography sx={{ m: "0 10px" }}>{quantity}</Typography>
+      <IconButton
+        aria-label="increase"
+        size="small"
+        onClick={onIncrease}
+        disabled={quantity >= counterSettings.MaxQuantity}
+      >
+        <AddIcon fontSize="inherit" />
       </IconButton>
     </div>
   );
