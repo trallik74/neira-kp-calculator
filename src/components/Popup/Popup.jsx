@@ -235,7 +235,7 @@ function Popup({ isPopupOpen, handlePopupClose, sendEmail, isSending }) {
             </Button>
             <span className={styles.dataPolicy}>
               Отправляя форму, вы подтверждаете, что даете согласие на{" "}
-              <a href="https://neiragroup.com/policy" target="_blank">
+              <a href="#" target="_blank">
                 обработку персональных данных
               </a>
             </span>

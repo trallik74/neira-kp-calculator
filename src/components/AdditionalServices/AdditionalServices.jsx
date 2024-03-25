@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { ArrowDropDown } from "@mui/icons-material";
 import styles from "./AdditionalServices.module.css";
-import ServcesCounter from "../ServcesCounter/ServcesCounter";
+import ServicesCounter from "../ServicesCounter/ServicesCounter";
 import { orderAction } from "../../store/slices";
 import { useDispatch, useSelector } from "react-redux";
 import { counterSettings } from "../../utils/constant";
@@ -79,7 +79,7 @@ function AdditionalServices({ data }) {
                 <span className={styles.currency}>₽</span>
               </p>
               {item.isMultyQuantity ? (
-                <ServcesCounter
+                <ServicesCounter
                   id={index + 2}
                   name={item.text}
                   price={item.price}

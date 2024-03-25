@@ -1,10 +1,10 @@
 import styles from "./Logo.module.css";
-import logo from "../../images/logo.svg";
+import CalculateOutlinedIcon from "@mui/icons-material/CalculateOutlined";
 
 function Logo() {
   return (
-    <a href="https://neiragroup.com/" target="_blank">
-      <img className={styles.logo} src={logo} alt="Лого" />
+    <a href="#" className={styles.logo}>
+      <CalculateOutlinedIcon fontSize="inherit" />
     </a>
   );
 }

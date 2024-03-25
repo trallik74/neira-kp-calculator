@@ -1,10 +1,10 @@
 import { IconButton, Typography } from "@mui/material";
-import styles from "./ServcesCounter.module.css";
+import styles from "./ServicesCounter.module.css";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { counterSettings } from "../../utils/constant";
 
-function ServcesCounter({
+function ServicesCounter({
   id,
   name,
   price,
@@ -43,4 +43,4 @@ function ServcesCounter({
   );
 }
 
-export default ServcesCounter;
+export default ServicesCounter;
